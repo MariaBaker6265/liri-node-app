@@ -1,5 +1,6 @@
 
-require('dotenv').config({path: 'C:\Users\RetailAdmin\Documents\CWRUCodingBootcamp\Homeworks\Homework10\liri-node-app\.env'})
+//require('dotenv').config({path: 'C:\Users\RetailAdmin\Documents\CWRUCodingBootcamp\Homeworks\Homework10\liri-node-app\.env'})
+require('dotenv').config()
 var $ = require('jquery');
 
 //Executed (npm install twitter) in node.
@@ -7,31 +8,16 @@ var $ = require('jquery');
 var Twitter = require('twitter');
 
 var client = new Twitter({
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    consumer_key: process.env.twitter_consumer_key,
+    consumer_secret: process.env.twitter_consumer_secret,
+    access_token_key: process.env.twitter_access_token_key,
+    access_token_secret: process.env.twitter_access_token_secret
   });
 
 
-  /**
- * Stream statuses filtered by keyword
- * number of tweets per second depends on topic popularity
- **/
-client.stream('statuses/filter', {track: 'twitter'},  function(stream) {
-  stream.on('data', function(tweet) {
-    console.log(tweet.text);
-  });
+  client.get('search/tweets', {q: 'node.js'}, function(error, tweets, response) {
+    console.log(tweets);
+ });
 
-  stream.on('error', function(error) {
-    console.log(error);
-  });
-});
-
-  //client.get(path, params, callback);
-  //client.post(path, params, callback);
-  //client.stream(path, params, callback);
-
-
-
+  
 //var spotify = new Spotify(keys.spotify);
