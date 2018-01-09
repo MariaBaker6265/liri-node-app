@@ -1,22 +1,23 @@
-
-//require('dotenv').config({path: 'C:\Users\RetailAdmin\Documents\CWRUCodingBootcamp\Homeworks\Homework10\liri-node-app\.env'})
-//require('dotenv').config()
-var $ = require('jquery');
-var request = require('request');
-var fs = require('fs');
-var keys = require('../liri-node-app/keys');
-var Twitter = require('twitter');
-var client = new Twitter(keys.twitterKeys);
+var $ = require('jquery'),
+request = require('request'),
+fs = require('fs'),
+keys = require('../liri-node-app/keys'),
 //var spotify = require('spotify');
 //Executed (npm install twitter) in node.
 //Node require command to access twitter.
+Twitter = require('twitter'),
+params = {
+    screen_name: 'MBAlias6265',
+    count: 2
+    }
 
-
+    client = new Twitter(keys.twitterKeys);
 
 //Get request for MBAlias6265 twitter account.
-  client.get('search/tweets', {q: 'node.js'}, function(error, tweets, response) {
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    console.log(error);
     console.log(tweets);
- });
+});
 
   
 //var clientTwo = new Spotify({
