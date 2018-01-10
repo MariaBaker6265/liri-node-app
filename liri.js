@@ -14,7 +14,7 @@ var params = {
     };
 console.log(keys.twitterKeys);
 var client1 = new Twitter(keys.twitterKeys);
-
+function myTweets(){
 //Get request for MBAlias6265 twitter account.
 client1.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error && response.statusCode === 200) {
@@ -23,6 +23,9 @@ client1.get('statuses/user_timeline', params, function(error, tweets, response) 
     if (error) {
        ( console.log("Error" + error))};   
     });
+}
+
+myTweets();
 //==========================================================================
   
 var client2 = new spotify (keys.spotifyKeys)
