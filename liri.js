@@ -1,3 +1,5 @@
+//import { print } from 'util';
+
 'use strict';
 var fs = require('fs');
 var keys = require('../liri-node-app/keys');
@@ -8,21 +10,24 @@ var request = require('request');
 var Twitter = require('twitter');
 var params = {
     screen_name: 'MBAlias6265',
-    count: 2
+    count: 20
     };
 console.log(keys.twitterKeys);
-var client = new Twitter(keys.twitterKeys);
+var client1 = new Twitter(keys.twitterKeys);
 
 //Get request for MBAlias6265 twitter account.
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-    console.log(error);
-    console.log(tweets);
-});
+client1.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error && response.statusCode === 200) {
+     //console.log(tweets);
+    console.log(JSON.stringify(tweets, ['created_at', 'text']))};
+    if (error) {
+       ( console.log("Error" + error))};   
+    });
 //==========================================================================
   
-var client = new spotify (keys.spotifyKeys)
+var client2 = new spotify (keys.spotifyKeys)
 
-    client.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+    client2.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
     if ( err ) {
     console.log('Error occurred: ' + err);
       return;
@@ -31,3 +36,7 @@ var client = new spotify (keys.spotifyKeys)
     //Do something with 'data'
     console.log(data);
 });
+//===========================================================================
+
+
+
